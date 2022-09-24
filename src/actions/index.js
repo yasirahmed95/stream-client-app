@@ -35,12 +35,21 @@ export const createStream = (formValues) => async (dispatch, getState) => {
 };
 
 export const fetchStreams = () => async (dispatch) => {
-  const response = await streams.get("/streams");
-
-  dispatch({
-    type: FETCH_STREAMS,
-    payload: response.data,
-  });
+  await streams
+    .get("/c/631dabd25c146d63ca975168/bins")
+    .then(async ({ data }) => {
+      const list = data.map(async (item) => {
+        const { data } = await streams.get(`/b/${item.record}`);
+        return data;
+      });
+      for (let i = 0; i < list.length; i++) {
+        list[i] = await list[i];
+      }
+      dispatch({
+        type: FETCH_STREAMS,
+        payload: list,
+      });
+    });
 };
 
 export const fetchStream = (id) => async (dispatch) => {
