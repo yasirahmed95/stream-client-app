@@ -44,6 +44,7 @@ export const fetchStreams = () => async (dispatch) => {
       });
       for (let i = 0; i < list.length; i++) {
         list[i] = await list[i];
+        list[i] = list[i].record;
       }
       dispatch({
         type: FETCH_STREAMS,
