@@ -9,6 +9,7 @@ import {
   DELETE_STREAM,
   EDIT_STREAM,
 } from "./type";
+import { headers } from "../apis/headers";
 
 export const signIn = (userId) => {
   return {
@@ -25,7 +26,13 @@ export const signOut = () => {
 
 export const createStream = (formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const response = await streams.post("/b", { ...formValues, userId });
+  const response = await streams.post(
+    "/b",
+    { ...formValues, userId },
+    {
+      headers: { ...headers, "X-Collection-Id": "631dabd25c146d63ca975168" },
+    }
+  );
 
   dispatch({
     type: CREATE_STREAM,
