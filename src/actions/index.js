@@ -51,7 +51,7 @@ export const fetchStreams = () => async (dispatch) => {
       });
       for (let i = 0; i < list.length; i++) {
         list[i] = await list[i];
-        list[i] = list[i].record;
+        list[i] = { ...list[i].record, id: list[i].metadata.id };
       }
       dispatch({
         type: FETCH_STREAMS,
