@@ -14,7 +14,6 @@ const streamReducer = (state = {}, action) => {
     case FETCH_STREAM:
       return { ...state, [action.payload.metadata.id]: action.payload.record };
     case CREATE_STREAM:
-      console.log(action.payload);
       return { ...state, [action.payload.metadata.id]: action.payload.record };
     case EDIT_STREAM:
       return { ...state, [action.payload.metadata.id]: action.payload.record };
