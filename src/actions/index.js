@@ -69,8 +69,9 @@ export const fetchStream = (id) => async (dispatch) => {
   });
 };
 
-export const editStream = (id, formValues) => async (dispatch) => {
-  const response = await streams.put(`/b/${id}`, formValues);
+export const editStream = (id, formValues) => async (dispatch, getState) => {
+  const { userId } = getState().auth;
+  const response = await streams.put(`/b/${id}`, { ...formValues, userId });
 
   dispatch({
     type: EDIT_STREAM,
@@ -80,7 +81,7 @@ export const editStream = (id, formValues) => async (dispatch) => {
 };
 
 export const deleteStream = (id) => async (dispatch) => {
-  await streams.delete(`/streams/${id}`);
+  await streams.delete(`/b/${id}`);
 
   dispatch({
     type: DELETE_STREAM,

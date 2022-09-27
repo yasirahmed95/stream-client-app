@@ -29,6 +29,9 @@ class StreamList extends React.Component {
   }
 
   renderList() {
+    if (this.props.streams.length === 0) {
+      return <div>Loading...!</div>;
+    }
     return this.props.streams.map((stream) => {
       return (
         <div
@@ -63,9 +66,6 @@ class StreamList extends React.Component {
   }
 
   render() {
-    if (this.props.streams.length === 0) {
-      return <div>Loading...!</div>;
-    }
     return (
       <div>
         <h2>Streams</h2>
