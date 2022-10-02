@@ -41,9 +41,10 @@ class StreamList extends React.Component {
           <i className="bi bi-camera-video fs-3"></i>
           <div className="ms-3 me-auto">
             <div className="fw-bold">
-              <Link to={`/streams/${stream.id}`} className="link-primary">
+              {/* <Link to={`/streams/${stream.id}`} className="link-primary">
                 {stream.title}
-              </Link>
+              </Link> */}
+              <div className="link-primary">{stream.title}</div>
             </div>
             <div>{stream.description}</div>
           </div>
